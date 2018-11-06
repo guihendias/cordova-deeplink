@@ -32,7 +32,7 @@ public class Deeplink extends CordovaPlugin {
                 }
             });
         } else {
-            callbackContext.error('error')
+            callbackContext.error("error");
             return false;
         }
         return true;
