@@ -20,7 +20,7 @@
             </feature>
         </config-file>
 
-        <source-file src="src/android/com/valeti/Deeplink.java" target-dir="src/com/valeti" />
+        <source-file src="src/android/com/valeti/Deeplink.java" target-dir="src/com/valeti/" />
     </platform>
 
 
