@@ -15,12 +15,7 @@ import android.util.Base64;
 * This class exposes methods in Cordova that can be called from JavaScript.
 */
 public class Deeplink extends CordovaPlugin {
-
-
-     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-         super.initialize(cordova, webView);
-     }
-
+    
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         if (action.equals("echo")) {
             // callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, args.getString(0)));
