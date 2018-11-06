@@ -13,7 +13,7 @@ import android.util.Base64;
 /**
 * This class exposes methods in Cordova that can be called from JavaScript.
 */
-public class Echo extends CordovaPlugin {
+public class Deeplink extends CordovaPlugin {
 
 
      private volatile boolean bulkEchoing;
