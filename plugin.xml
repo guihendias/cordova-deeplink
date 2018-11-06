@@ -5,8 +5,8 @@
       version="0.0.1">
     <name>deeplink</name>
 
-    <js-module src="www/template.js" name="Template">
-        <clobbers target="Template" />
+    <js-module src="www/plugin.js" name="plugin">
+        <clobbers target="Deeplink" />
     </js-module>
 
 
