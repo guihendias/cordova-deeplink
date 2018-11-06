@@ -23,14 +23,16 @@ public class Deeplink extends CordovaPlugin {
 
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         if (action.equals("echo")) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, args.getString(0)));
+            // callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, args.getString(0)));
+            callbackContext.success(args.getString(0));
         } else if(action.equals("echoAsync")) {
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
-                    callbackContext.sendPluginResult( new PluginResult(PluginResult.Status.OK, args.optString(0)));
+                    // callbackContext.sendPluginResult( new PluginResult(PluginResult.Status.OK, args.optString(0)));
                 }
             });
         } else {
+            callbackContext.error('error')
             return false;
         }
         return true;
