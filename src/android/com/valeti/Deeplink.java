@@ -22,6 +22,7 @@ public class Deeplink extends CordovaPlugin {
     private final String ARG_INPUT_TYPE = "inputType";
     private final String ARG_INSTALLMENTS = "installments";
     private final String ARG_NSU = "nsu";
+    private final String ARG_BRAND = "brand";
     private final String ARG_EC = "ec";
     private final String ARG_NUM_SERIE = "numserie";
     private final String ARG_NUM_LOGIC = "numlogic";
