@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.content.Context;
 /**
  * This class exposes methods in Cordova that can be called from JavaScript.
  */
