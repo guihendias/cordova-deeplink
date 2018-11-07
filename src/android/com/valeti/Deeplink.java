@@ -41,7 +41,7 @@ public class Deeplink extends CordovaPlugin {
 
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("getnet://pagamento/v1/" + action));
 
-        if (actions.equals("refund")) {
+        if (action.equals("refund")) {
          //TODO
         }
 
