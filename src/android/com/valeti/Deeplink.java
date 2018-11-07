@@ -32,7 +32,7 @@ public class Deeplink extends CordovaPlugin {
             bundle.putString("currencyPosition", "CURRENCY_AFTER_AMOUNT");
             bundle.putString("currencyCode", "986");
 
-            Intent intent = new Intent(Uri.parse("getnet://pagamento/v1/payment"));
+            Intent intent = new Intent("getnet://pagamento/v1/payment");
 
             intent.putExtras(bundle);
             cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_CODE);
