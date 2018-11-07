@@ -22,23 +22,30 @@ public class Deeplink extends CordovaPlugin {
     private final String ARG_INPUT_TYPE = "inputType";
     private final String ARG_INSTALLMENTS = "installments";
     private final String ARG_NSU = "nsu";
-    private final String ARG_BRAND = "brand";
+    private final String ARG_EC = "ec";
+    private final String ARG_NUM_SERIE = "numserie";
+    private final String ARG_NUM_LOGIC = "numlogic";
+    private final String ARG_VERSION = "version";
+    private final String ARG_CNPJ = "cnpjEC";
+    private final String ARG_NAME = "nomeEC";
 
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext)
             throws JSONException {
         PUBLIC_CALLBACKS = callbackContext;
-        if (action.equals("payment")) {
-            Bundle bundle = new Bundle();
-            bundle.putString("amount", "000000001000");
-            bundle.putString("currencyPosition", "CURRENCY_AFTER_AMOUNT");
-            bundle.putString("currencyCode", "986");
 
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("getnet://pagamento/v1/payment"));
+        Bundle bundle = new Bundle();
+        bundle.putString("amount", "000000001000");
+        bundle.putString("currencyPosition", "CURRENCY_AFTER_AMOUNT");
+        bundle.putString("currencyCode", "986");
 
-            intent.putExtras(bundle);
-            cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_CODE);
-            // callbackContext.success(args.getString(0));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("getnet://pagamento/v1/" + action));
+
+        if (actions.equals("refund")) {
+         //TODO
         }
+
+        intent.putExtras(bundle);
+        cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_CODE);
 
         PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
         pluginResult.setKeepCallback(true);
@@ -61,6 +68,12 @@ public class Deeplink extends CordovaPlugin {
                 json.put("installments", extras.getString(ARG_INSTALLMENTS));
                 json.put("nsu", extras.getString(ARG_NSU));
                 json.put("brand", extras.getString(ARG_BRAND));
+                json.put("ec", extras.getString(ARG_EC));
+                json.put("numSerie", extras.getString(ARG_NUM_SERIE));
+                json.put("numLogic", extras.getString(ARG_NUM_LOGIC));
+                json.put("apiVersion", extras.getString(ARG_VERSION));
+                json.put("cnpj", extras.getString(ARG_CNPJ));
+                json.put("name", extras.getString(ARG_NAME));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
