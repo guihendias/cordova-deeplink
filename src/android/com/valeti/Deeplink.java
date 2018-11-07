@@ -50,16 +50,18 @@ public class Deeplink extends CordovaPlugin {
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == cordova.getActivity().RESULT_OK) {
             Bundle extras = data.getExtras();// Get data sent by the Intent
-            String result = extras.getString(ARG_RESULT); // data parameter will be send from the other activity.
-            String resultDetails = extras.getString(ARG_RESULT_DETAILS);
-            String amount = extras.getString(ARG_AMOUNT);
-            String type = extras.getString(ARG_TYPE);
-            String inputType = extras.getString(ARG_INPUT_TYPE);
-            String installments = extras.getString(ARG_INSTALLMENTS);
-            String nsu = extras.getString(ARG_NSU);
-            String brand = extras.getString(ARG_BRAND);
+            JSONObject json = new JSONObject();
 
-            PluginResult resultado = new PluginResult(PluginResult.Status.OK, "this value will be sent to cordova");
+            json.put("result", extras.getString(ARG_RESULT));
+            json.put("resultDetails", extras.getString(ARG_RESULT_DETAILS));
+            json.put(amount, extras.getString(ARG_AMOUNT));
+            json.put(type, extras.getString(ARG_TYPE));
+            json.put(inputType, extras.getString(ARG_INPUT_TYPE));
+            json.put(installments, extras.getString(ARG_INSTALLMENTS));
+            json.put(nsu, extras.getString(ARG_NSU));
+            json.put(brand, extras.getString(ARG_BRAND));
+
+            PluginResult resultado = new PluginResult(PluginResult.Status.OK, json);
             resultado.setKeepCallback(true);
             PUBLIC_CALLBACKS.sendPluginResult(resultado);
 
