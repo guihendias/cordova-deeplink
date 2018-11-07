@@ -35,7 +35,7 @@ public class Deeplink extends CordovaPlugin {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("getnet://pagamento/v1/payment"));
 
             intent.putExtras(bundle);
-            cordova.startActivity((CordovaPlugin) this, intent, REQUEST_CODE);
+            cordova.startActivity(intent);
             // callbackContext.success(args.getString(0));
         }
 
