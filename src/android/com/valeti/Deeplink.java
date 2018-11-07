@@ -26,6 +26,7 @@ public class Deeplink extends CordovaPlugin {
 
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext)
             throws JSONException {
+        PUBLIC_CALLBACKS = callbackContext;
         if (action.equals("payment")) {
             Bundle bundle = new Bundle();
             bundle.putString("amount", "000000001000");
@@ -60,14 +61,14 @@ public class Deeplink extends CordovaPlugin {
 
             PluginResult resultado = new PluginResult(PluginResult.Status.OK, "this value will be sent to cordova");
             resultado.setKeepCallback(true);
-            PUBLIC_CALLBACKS.success(resultado);
+            PUBLIC_CALLBACKS.sendPluginResult(resultado);
 
             return;
         } else if (resultCode == cordova.getActivity().RESULT_CANCELED) {
             PluginResult resultado = new PluginResult(PluginResult.Status.OK,
                     "canceled action, process this in javascript");
             resultado.setKeepCallback(true);
-            PUBLIC_CALLBACKS.error(resultado);
+            PUBLIC_CALLBACKS.sendPluginResult(resultado);
             return;
         }
         // Handle other results if exists.
