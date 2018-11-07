@@ -60,14 +60,14 @@ public class Deeplink extends CordovaPlugin {
 
             PluginResult resultado = new PluginResult(PluginResult.Status.OK, "this value will be sent to cordova");
             resultado.setKeepCallback(true);
-            PUBLIC_CALLBACKS.sendPluginResult(resultado);
+            PUBLIC_CALLBACKS.success(resultado);
 
             return;
         } else if (resultCode == cordova.getActivity().RESULT_CANCELED) {
             PluginResult resultado = new PluginResult(PluginResult.Status.OK,
                     "canceled action, process this in javascript");
             resultado.setKeepCallback(true);
-            PUBLIC_CALLBACKS.sendPluginResult(resultado);
+            PUBLIC_CALLBACKS.error(resultado);
             return;
         }
         // Handle other results if exists.
