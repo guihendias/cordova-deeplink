@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 /**
@@ -49,12 +50,12 @@ public class Deeplink extends CordovaPlugin {
             Bundle extras = data.getExtras();// Get data sent by the Intent
             String result = extras.getString(ARG_RESULT); // data parameter will be send from the other activity.
             String resultDetails = extras.getString(ARG_RESULT_DETAILS);
-            String amount = data.getString(ARG_AMOUNT);
-            String type = data.getString(ARG_TYPE);
-            String inputType = data.getString(ARG_INPUT_TYPE);
-            String installments = data.getString(ARG_INSTALLMENTS);
-            String nsu = data.getString(ARG_NSU);
-            String brand = data.getString(ARG_BRAND);
+            String amount = extras.getString(ARG_AMOUNT);
+            String type = extras.getString(ARG_TYPE);
+            String inputType = extras.getString(ARG_INPUT_TYPE);
+            String installments = extras.getString(ARG_INSTALLMENTS);
+            String nsu = extras.getString(ARG_NSU);
+            String brand = extras.getString(ARG_BRAND);
 
             PluginResult resultado = new PluginResult(PluginResult.Status.OK, "this value will be sent to cordova");
             resultado.setKeepCallback(true);
