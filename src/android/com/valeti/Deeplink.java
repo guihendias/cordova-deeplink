@@ -33,7 +33,7 @@ public class Deeplink extends CordovaPlugin {
             bundle.putString("currencyCode", "986");
 
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("getnet://pagamento/v1/payment"));
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             intent.putExtras(bundle);
             cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_CODE);
             // callbackContext.success(args.getString(0));
@@ -61,7 +61,7 @@ public class Deeplink extends CordovaPlugin {
             PluginResult resultado = new PluginResult(PluginResult.Status.OK, "this value will be sent to cordova");
             resultado.setKeepCallback(true);
             PUBLIC_CALLBACKS.sendPluginResult(resultado);
-
+            cordova.finish();
             return;
         } else if (resultCode == cordova.getActivity().RESULT_CANCELED) {
             PluginResult resultado = new PluginResult(PluginResult.Status.OK,
