@@ -52,14 +52,18 @@ public class Deeplink extends CordovaPlugin {
             Bundle extras = data.getExtras();// Get data sent by the Intent
             JSONObject json = new JSONObject();
 
-            json.put("result", extras.getString(ARG_RESULT));
-            json.put("resultDetails", extras.getString(ARG_RESULT_DETAILS));
-            json.put("amount", extras.getString(ARG_AMOUNT));
-            json.put("type", extras.getString(ARG_TYPE));
-            json.put("inputType", extras.getString(ARG_INPUT_TYPE));
-            json.put("installments", extras.getString(ARG_INSTALLMENTS));
-            json.put("nsu", extras.getString(ARG_NSU));
-            json.put("brand", extras.getString(ARG_BRAND));
+            try {
+                json.put("result", extras.getString(ARG_RESULT));
+                json.put("resultDetails", extras.getString(ARG_RESULT_DETAILS));
+                json.put("amount", extras.getString(ARG_AMOUNT));
+                json.put("type", extras.getString(ARG_TYPE));
+                json.put("inputType", extras.getString(ARG_INPUT_TYPE));
+                json.put("installments", extras.getString(ARG_INSTALLMENTS));
+                json.put("nsu", extras.getString(ARG_NSU));
+                json.put("brand", extras.getString(ARG_BRAND));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             PluginResult resultado = new PluginResult(PluginResult.Status.OK, json);
             resultado.setKeepCallback(true);
