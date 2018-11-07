@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import android.content.Context;
 /**
  * This class exposes methods in Cordova that can be called from JavaScript.
  */
@@ -32,8 +31,8 @@ public class Deeplink extends CordovaPlugin {
             bundle.putString("amount", "000000001000");
             bundle.putString("currencyPosition", "CURRENCY_AFTER_AMOUNT");
             bundle.putString("currencyCode", "986");
-            Context context = this.cordova.getActivity().getApplicationContext();
-            Intent intent = new Intent(context, Uri.parse("getnet://pagamento/v1/payment"));
+
+            Intent intent = new Intent(Uri.parse("getnet://pagamento/v1/payment"));
 
             intent.putExtras(bundle);
             cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_CODE);
