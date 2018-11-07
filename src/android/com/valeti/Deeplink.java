@@ -14,7 +14,6 @@ import android.os.Bundle;
 public class Deeplink extends CordovaPlugin {
 
     private CallbackContext PUBLIC_CALLBACKS = null;
-    private Intent currentIntent = null;
     private final int REQUEST_CODE = 1001;
     private final String ARG_RESULT = "result";
     private final String ARG_RESULT_DETAILS = "resultDetails";
@@ -27,8 +26,6 @@ public class Deeplink extends CordovaPlugin {
 
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext)
             throws JSONException {
-        currentIntent = getIntent();
-
         if (action.equals("payment")) {
             Bundle bundle = new Bundle();
             bundle.putString("amount", "000000001000");
@@ -36,8 +33,10 @@ public class Deeplink extends CordovaPlugin {
             bundle.putString("currencyCode", "986");
 
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("getnet://pagamento/v1/payment"));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtras(bundle);
             cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_CODE);
+            // callbackContext.success(args.getString(0));
         }
 
         PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
@@ -62,7 +61,7 @@ public class Deeplink extends CordovaPlugin {
             PluginResult resultado = new PluginResult(PluginResult.Status.OK, "this value will be sent to cordova");
             resultado.setKeepCallback(true);
             PUBLIC_CALLBACKS.sendPluginResult(resultado);
-            cordova.startActivity(currentIntent);
+
             return;
         } else if (resultCode == cordova.getActivity().RESULT_CANCELED) {
             PluginResult resultado = new PluginResult(PluginResult.Status.OK,
