@@ -35,13 +35,16 @@ public class Deeplink extends CordovaPlugin {
         PUBLIC_CALLBACKS = callbackContext;
 
         Bundle bundle = new Bundle();
-        bundle.putString("amount", "000000001000");
         bundle.putString("currencyPosition", "CURRENCY_AFTER_AMOUNT");
         bundle.putString("currencyCode", "986");
 
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("getnet://pagamento/v1/" + action));
 
-        if (action.equals("refund")) {
+        if(action.equals("payment")){
+            bundle.putString("paymentType", args.getString(0));
+            bundle.putString("amount", args.getString(1));
+
+        } else if (action.equals("refund")) {
          //TODO
         }
 
